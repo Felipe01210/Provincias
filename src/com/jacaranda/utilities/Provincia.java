@@ -1,6 +1,5 @@
 package com.jacaranda.utilities;
 
-import java.lang.module.ResolutionException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,12 +14,20 @@ public class Provincia {
 	
 	
 	public Provincia(String nombre, String codigo) {
-		if (nombre==null || codigo==null) {
+		if (nombre==null || codigo==null || codigo.length()!=2 || !nombre.equals(nombre.toUpperCase())) {
 			throw new ProvinciaException("No se ha podido crear la provincia");
-		}else {			
-			this.nombre = nombre;
-			this.codigo = codigo;
-		}		
+		}else {
+			if (codigo.length()==2) {
+				for (int i = 0; i<codigo.length();i++) {
+					if (Character.isDigit(i)) {
+						throw new ProvinciaException("No se ha podido crear la provincia CHARACTER");
+					}
+				}
+			}
+		}
+		
+		this.nombre = nombre;
+		this.codigo = codigo;
 	}
 	
 	private boolean existePueblo(String nombrePueblo) {
