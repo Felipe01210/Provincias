@@ -48,6 +48,9 @@ public class Provincia {
 			throw new ProvinciaException("Error,no se ha podido añadir el pueblo");
 		}else {
 			this.listaPueblos.add(new Pueblo(nombre,codigo,numH,renta,superficie));
+			this.setRentaPerCapital(this.getRentaPerCapital()+renta);
+			this.setNumeroHabitantes(this.getNumeroHabitantes()+numH);
+			this.setSuperficie(this.getSuperficie()+superficie);
 			resultado=true;
 		}
 		
@@ -80,6 +83,9 @@ public class Provincia {
 			for (Pueblo i : listaPueblos) {
 				if (nombre.equals(i.getNombre())) {
 					this.listaPueblos.remove(i);
+					this.setRentaPerCapital(this.getRentaPerCapital()-i.getRentaPerCapital());
+					this.setNumeroHabitantes(this.getNumeroHabitantes()-i.getNumeroHabitantes());
+					this.setSuperficie(this.getSuperficie()-i.getSuperficie());
 					res=true;
 				}
 			}
