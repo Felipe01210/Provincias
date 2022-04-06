@@ -19,7 +19,7 @@ public class Provincia {
 		}else {
 			if (codigo.length()==2) {
 				for (int i = 0; i<codigo.length();i++) {
-					if (Character.isDigit(i)) {
+					if (!Character.isDigit(codigo.charAt(i))) {
 						throw new ProvinciaException("No se ha podido crear la provincia CHARACTER");
 					}
 				}
@@ -31,18 +31,23 @@ public class Provincia {
 	}
 	
 	private boolean existePueblo(String nombrePueblo) {
-	
-		return this.listaPueblos.contains(nombrePueblo);
+		boolean res = false;
+		for(Pueblo i : this.listaPueblos) {
+			if (i.getNombre().equals(nombrePueblo)) {
+				res = true;
+			}
+		}
+		return res;
 	}
 
 	
-	public boolean addPueblo(Pueblo pu) {
+	public boolean addPueblo(String nombre, String codigo, int numH, double renta, double superficie) {
 		boolean resultado=false;
 		//!this.listaPueblos.contains(pu) 
-		if (existePueblo(pu.getNombre())) {
+		if (existePueblo(nombre)) {
 			throw new ProvinciaException("Error,no se ha podido añadir el pueblo");
 		}else {
-			this.listaPueblos.add(pu);
+			this.listaPueblos.add(new Pueblo(nombre,codigo,numH,renta,superficie));
 			resultado=true;
 		}
 		
@@ -74,7 +79,7 @@ public class Provincia {
 		if (existePueblo(nombre)) {
 			for (Pueblo i : listaPueblos) {
 				if (nombre.equals(i.getNombre())) {
-					this.listaPueblos.remove(nombre);
+					this.listaPueblos.remove(i);
 					res=true;
 				}
 			}
@@ -87,6 +92,14 @@ public class Provincia {
 		return this.listaPueblos.size();
 	}
 	
+	public Set<Pueblo> getListaPueblos() {
+		return listaPueblos;
+	}
+
+	public void setListaPueblos(Set<Pueblo> listaPueblos) {
+		this.listaPueblos = listaPueblos;
+	}
+
 	public String getCodigo() {
 		return codigo;
 	}
@@ -103,6 +116,9 @@ public class Provincia {
 
 
 	public void setNumeroHabitantes(Integer numeroHabitantes) {
+		if (numeroHabitantes < 0) {
+			throw new ProvinciaException("Numero de habitantes negativo no aceptada");
+		}
 		this.numeroHabitantes = numeroHabitantes;
 	}
 
@@ -113,6 +129,9 @@ public class Provincia {
 
 
 	public void setRentaPerCapital(Double rentaPerCapital) {
+		if (rentaPerCapital < 0.0) {
+			throw new ProvinciaException("Renta negativa no aceptada");
+		}
 		this.rentaPerCapital = rentaPerCapital;
 	}
 
@@ -123,6 +142,9 @@ public class Provincia {
 
 
 	public void setSuperficie(Double superficie) {
+		if (superficie < 0.0) {
+			throw new ProvinciaException("Superficie negativa no aceptada");
+		}
 		this.superficie = superficie;
 	}
 

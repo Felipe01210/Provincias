@@ -95,8 +95,8 @@ public class Pueblo  implements Comparable<Pueblo>{
 
 	@Override
 	public String toString() {
-		return "Pueblo [nombre=" + nombre + ", codigo=" + codigo + ", numeroHabitantes=" + numeroHabitantes
-				+ ", rentaPerCapital=" + rentaPerCapital + ", superficie=" + superficie + "]";
+		return "Pueblo [nombre=" + nombre +"\n"+ ", codigo=" + codigo +"\n"+ ", numeroHabitantes=" + numeroHabitantes
+				+"\n"+ ", rentaPerCapital=" + rentaPerCapital +"\n"+ ", superficie=" + superficie + "]";
 	}
 	
 	
