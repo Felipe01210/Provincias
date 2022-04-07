@@ -3,31 +3,21 @@ package com.jacaranda.utilities;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Provincia {
-
-	private String nombre;
-	private String codigo;
-	private Integer numeroHabitantes;
-	private Double rentaPerCapital;
-	private Double superficie;
+public class Provincia extends Poblacion {
+	
+	private static final int LONGCOD = 2;
 	private Set<Pueblo> listaPueblos= new HashSet<Pueblo>();
 	
 	
 	public Provincia(String nombre, String codigo) {
-		if (nombre==null || codigo==null || codigo.length()!=2 || !nombre.equals(nombre.toUpperCase())) {
-			throw new ProvinciaException("No se ha podido crear la provincia");
-		}else {
-			if (codigo.length()==2) {
-				for (int i = 0; i<codigo.length();i++) {
-					if (!Character.isDigit(codigo.charAt(i))) {
-						throw new ProvinciaException("No se ha podido crear la provincia CHARACTER");
-					}
-				}
-			}
-		}
-		
-		this.nombre = nombre;
-		this.codigo = codigo;
+		super(nombre,codigo);
+	}
+	
+	
+	@Override
+	public int getTamanoMax() {
+		// TODO Auto-generated method stub
+		return LONGCOD;
 	}
 	
 	private boolean existePueblo(String nombrePueblo) {
@@ -105,60 +95,6 @@ public class Provincia {
 	public void setListaPueblos(Set<Pueblo> listaPueblos) {
 		this.listaPueblos = listaPueblos;
 	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-
-	public Integer getNumeroHabitantes() {
-		return numeroHabitantes;
-	}
-
-
-	public void setNumeroHabitantes(Integer numeroHabitantes) {
-		if (numeroHabitantes < 0) {
-			throw new ProvinciaException("Numero de habitantes negativo no aceptada");
-		}
-		this.numeroHabitantes = numeroHabitantes;
-	}
-
-
-	public Double getRentaPerCapital() {
-		return rentaPerCapital;
-	}
-
-
-	public void setRentaPerCapital(Double rentaPerCapital) {
-		if (rentaPerCapital < 0.0) {
-			throw new ProvinciaException("Renta negativa no aceptada");
-		}
-		this.rentaPerCapital = rentaPerCapital;
-	}
-
-
-	public Double getSuperficie() {
-		return superficie;
-	}
-
-
-	public void setSuperficie(Double superficie) {
-		if (superficie < 0.0) {
-			throw new ProvinciaException("Superficie negativa no aceptada");
-		}
-		this.superficie = superficie;
-	}
-
-
-	public String getNombre() {
-		return nombre;
-	}
-
 
 	public String getInformacionPueblo(String nombre) {
 		StringBuilder sb =  new StringBuilder();

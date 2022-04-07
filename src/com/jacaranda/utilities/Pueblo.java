@@ -2,62 +2,23 @@ package com.jacaranda.utilities;
 
 import java.util.Objects;
 
-public class Pueblo  implements Comparable<Pueblo>{
-
-	private String nombre;
-	private String codigo;
-	private Integer numeroHabitantes;
-	private Double rentaPerCapital;
-	private Double superficie;
+public class Pueblo extends Poblacion  implements Comparable<Pueblo>{
+	
+	private static final int LONGCOD = 5;
 	
 	public Pueblo(String nombre, String codigo, Integer numeroHabitantes, Double rentaPerCapital, Double superficie) {
-		this.nombre = nombre;
-		this.codigo = codigo;
-		this.numeroHabitantes = numeroHabitantes;
-		this.rentaPerCapital = rentaPerCapital;
-		this.superficie = superficie;
+		super(nombre,codigo,numeroHabitantes,rentaPerCapital,superficie);
 	}
 	
 	public Pueblo(String nombre, String codigo) {
-		this.nombre = nombre;
-		this.codigo = codigo;
+		super(nombre,codigo);
 		
 	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	private void setCodigo(String codigo) {
-		this.codigo = codigo;
-	}
-
-	public Integer getNumeroHabitantes() {
-		return numeroHabitantes;
-	}
-
-	public void setNumeroHabitantes(Integer numeroHabitantes) {
-		this.numeroHabitantes = numeroHabitantes;
-	}
-
-	public Double getRentaPerCapital() {
-		return rentaPerCapital;
-	}
-
-	public void setRentaPerCapital(Double rentaPerCapital) {
-		this.rentaPerCapital = rentaPerCapital;
-	}
-
-	public Double getSuperficie() {
-		return superficie;
-	}
-
-	public void setSuperficie(Double superficie) {
-		this.superficie = superficie;
-	}
-
-	public String getNombre() {
-		return nombre;
+	
+	@Override
+	public int getTamanoMax() {
+		// TODO Auto-generated method stub
+		return LONGCOD;
 	}
 
 	@Override
@@ -98,7 +59,7 @@ public class Pueblo  implements Comparable<Pueblo>{
 		return "Pueblo [nombre=" + nombre +"\n"+ ", codigo=" + codigo +"\n"+ ", numeroHabitantes=" + numeroHabitantes
 				+"\n"+ ", rentaPerCapital=" + rentaPerCapital +"\n"+ ", superficie=" + superficie + "]";
 	}
-	
+
 	
 	
 	

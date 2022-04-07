@@ -11,7 +11,7 @@ import com.jacaranda.utilities.Pueblo;
 class ProvinciaTest {
 
 	@Test
-	void testCrearProvinciaDatos() {
+	void testCrearProvinciaDatos() { //funciona
 		Provincia pr = new Provincia("SEVILLA","11");
 		assertEquals(pr.getClass().getSimpleName(), "Provincia");
 		
@@ -26,27 +26,27 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void testListadoNombrePueblo() {
+	void testListadoNombrePueblo() {  //no funciona
 		Provincia sevilla = new Provincia("SEVILLA","11");
-		sevilla.addPueblo("Brenes","01",2000,33.33,33.33);
-		sevilla.addPueblo("Cantillana","01",2000,33.33,33.33);
-		sevilla.addPueblo("La Rinconada","01",2000,33.33,33.33);
+		sevilla.addPueblo("BRENES","01011",2000,33.33,33.33);
+		sevilla.addPueblo("CANTILLANA","01011",2000,33.33,33.33);
+		sevilla.addPueblo("RINCONADA","01011",2000,33.33,33.33);
 		assertEquals(sevilla.listadoNombrePueblos().split(System.lineSeparator()).length,3);
 	}
 	
 	@Test
-	void testInformacionPueblo() {
+	void testInformacionPueblo() { //no funciona
 		Provincia sevilla = new Provincia("SEVILLA","11");
-		sevilla.addPueblo("Brenes","01",2000,33.33,33.33);
-		sevilla.addPueblo("Cantillana","01",2000,33.33,33.33);
-		sevilla.addPueblo("La Rinconada","01",2000,33.33,33.33);
-		assertEquals(sevilla.getInformacionPueblo("Brenes").split(System.lineSeparator()).length,5);
+		sevilla.addPueblo("BRENES","01011",2000,33.33,33.33);
+		sevilla.addPueblo("CANTILLANA","01011",2000,33.33,33.33);
+		sevilla.addPueblo("RINCONADA","01011",2000,33.33,33.33);
+		assertEquals(sevilla.getInformacionPueblo("BRENES").split(System.lineSeparator()).length,5);
 	}
 	
 	@Test
-	void testCrearProvinciaNombreNull() {
+	void testCrearProvinciaNombreNull() { //funciona
 		try {
-			Provincia pr = new Provincia(null,"11445");
+			Provincia pr = new Provincia(null,"11");
 			assert(false);
 		} catch (ProvinciaException pe) {
 			assert(true);
@@ -54,7 +54,7 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void testCrearProvinciaCodigoNull() {
+	void testCrearProvinciaCodigoNull() { //funciona
 		try {
 			Provincia pr = new Provincia("Sevilla",null);
 			assert(false);
@@ -64,7 +64,7 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void testOutOfRangeAbajo() {
+	void testOutOfRangeAbajo() { //funciona
 		try {
 			Provincia pr = new Provincia("Sevilla","1");
 			assert(false);
@@ -74,7 +74,7 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void testOutOfRangeArriba() {
+	void testOutOfRangeArriba() { //funciona
 		try {
 			Provincia pr = new Provincia("Sevilla","111");
 			assert(false);
@@ -84,21 +84,21 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void testAddPueblo() {
+	void testAddPueblo() { //no funciona
 		Provincia sevilla = new Provincia("SEVILLA","11");
 		assertEquals(sevilla.getListaPueblos().size(),0);
-		sevilla.addPueblo("Brenes","01",2000,33.33,33.33);
+		sevilla.addPueblo("BRENES","01011",2000,33.33,33.33);
 		assertEquals(sevilla.getListaPueblos().size(),1);
 	}
 	
 	@Test
-	void  testAddPuebloRepe() {
+	void  testAddPuebloRepe() { //no funciona
 		Provincia sevilla = new Provincia("SEVILLA","11");
 		assertEquals(sevilla.getListaPueblos().size(),0);
-		sevilla.addPueblo("Brenes","01",2000,33.33,33.33);
+		sevilla.addPueblo("BRENES","01011",2000,33.33,33.33);
 		assertEquals(sevilla.getListaPueblos().size(),1);
 		try {
-			sevilla.addPueblo("Brenes","01",2000,33.33,33.33);
+			sevilla.addPueblo("BRENES","01011",2000,33.33,33.33);
 			assert(false);
 		}catch(ProvinciaException p) {
 			assert(true);
@@ -106,7 +106,7 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void creacionDeProvinciaRentaNegativo() {
+	void creacionDeProvinciaRentaNegativo() { //funciona
 		try {
 			Provincia pr = new Provincia("SEVILLA", "11");
 			pr.setRentaPerCapital(-12.05);
@@ -117,7 +117,7 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void creacionDeProvinciaHabitantesNegativo() {
+	void creacionDeProvinciaHabitantesNegativo() { //funciona
 		try {
 			Provincia pr = new Provincia("SEVILLA", "11");
 			pr.setNumeroHabitantes(-12);
@@ -128,7 +128,7 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void creacionDeProvinciaSuperficieNegativo() {
+	void creacionDeProvinciaSuperficieNegativo() { //funciona
 		try {
 			Provincia pr = new Provincia("SEVILLA", "11");
 			pr.setSuperficie(-12.05);
@@ -139,12 +139,12 @@ class ProvinciaTest {
 	}
 	
 	@Test
-	void borrarPueblo() {
+	void borrarPueblo() { //no funciona
 	Provincia pr = new Provincia("SEVILLA", "22");
 	assertEquals(pr.getListaPueblos().size(),0);
-	pr.addPueblo("Minas", "11", 10, 10.10, 10.0);
+	pr.addPueblo("MINAS", "11111", 10, 10.10, 10.0);
 	assertEquals(pr.getListaPueblos().size(),1);
-	pr.delPueblo("Minas");
+	pr.delPueblo("MINAS");
 	assertEquals(pr.getListaPueblos().size(),0);
 	}
 	
